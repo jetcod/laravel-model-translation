@@ -1,0 +1,31 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+class CreateTranslationsTable extends Migration
+{
+    public function up()
+    {
+        Schema::create(config('translations.database.table_name'), function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('translatable_id')->comment('
+                    foreign key/id of record in another table (is not unique cause many instances can connect to this table)
+            ');
+            $table->string('translatable_type');
+            $table->string('title')->comment('Title of translated field');
+            $table->text('text')->comment('Actual translation');
+            $table->string('lang', 5)->comment('Language');
+            $table->timestamps();
+            $table->softDeletes();
+
+            $table->index(['translatable_type', 'translatable_id']);
+        });
+    }
+
+    public function down()
+    {
+        Schema::dropIfExists(config('translations.database.table_name'));
+    }
+}
