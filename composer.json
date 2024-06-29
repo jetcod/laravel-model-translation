@@ -28,12 +28,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Jetcode\\Laravel\\Translation\\": "src/"
+            "Jetcod\\Laravel\\Translation\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Jetcode\\Laravel\\Translation\\Test\\": "src/"
+            "Jetcod\\Laravel\\Translation\\Test\\": "src/"
         }
     },
     "scripts": {

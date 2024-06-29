@@ -1,6 +1,6 @@
 <?php
 
-namespace Jetcode\Laravel\Translation\Models;
+namespace Jetcod\Laravel\Translation\Models;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;

@@ -1,6 +1,6 @@
 <?php
 
-namespace Jetcode\Laravel\Translation\Providers;
+namespace Jetcod\Laravel\Translation\Providers;
 
 use Illuminate\Support\ServiceProvider as LaravelServiceProvider;
 
