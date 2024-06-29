@@ -50,7 +50,7 @@
         },
         "laravel": {
             "providers": [
-                "Jetcod\\Laravel\\Translation\\TranslationServiceProvider"
+                "Jetcod\\Laravel\\Translation\\Providers\\TranslationServiceProvider"
             ]
         }
     },
