@@ -14,8 +14,6 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest]
-        php: [7.4, 8.0, 8.1, 8.2]
-        laravel: ["6.*", "7.*", "8.*", "9.*", "10.*", "11.*"]
         include:
           - php: 7.4
             laravel: "6.*"
