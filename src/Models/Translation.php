@@ -28,9 +28,9 @@ class Translation extends Model
     protected $fillable = [
         'translatable_id',
         'translatable_type',
-        'lang',
-        'title',
-        'text',
+        'locale',
+        'key',
+        'value',
     ];
 
     public function translatable(): MorphTo
@@ -38,11 +38,20 @@ class Translation extends Model
         return $this->morphTo();
     }
 
+    public function scopeLocale($query, $locale)
+    {
+        return $query->where('locale', $locale);
+    }
+
     /**
      * @return string
      */
     public function getTable()
     {
-        return config('translations.table');
+        return sprintf(
+            '%s%s',
+            config('translations.database.prefix'),
+            config('translations.database.table_name')
+        );
     }
 }

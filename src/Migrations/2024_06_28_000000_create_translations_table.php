@@ -14,9 +14,9 @@ class CreateTranslationsTable extends Migration
                     foreign key/id of record in another table (is not unique cause many instances can connect to this table)
             ');
             $table->string('translatable_type');
-            $table->string('title')->comment('Title of translated field');
-            $table->text('text')->comment('Actual translation');
-            $table->string('lang', 5)->comment('Language');
+            $table->string('key')->comment('The key name that should be translated');
+            $table->text('value')->comment('Actual translation');
+            $table->string('locale', 5)->comment('Locale');
             $table->timestamps();
             $table->softDeletes();
 
