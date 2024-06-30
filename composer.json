@@ -14,15 +14,14 @@
         }
     ],
     "require": {
-        "php": "^8.0",
-        "laravel/framework": "^9.0|^10.0|^11.0",
-        "illuminate/support": "^9.0|^10.0|^11.0",
-        "illuminate/config": "^9.0|^10.0|^11.0"
+        "php": "^7.4|^8.0",
+        "laravel/framework": "^6.0|^7.0|^8.0|^9.0|^10.0|^11.0",
+        "illuminate/support": "^6.0|^7.0|^8.0|^9.0|^10.0|^11.0",
+        "illuminate/config": "^6.0|^7.0|^8.0|^9.0|^10.0|^11.0"
     },
     "require-dev": {
         "phpunit/phpunit": "^9.0|^10.0|^11.0",
-        "orchestra/testbench": "^7.0|^8.0|^9.0",
-        "mockery/mockery": "^1.6",
+        "orchestra/testbench": "^6.0|^7.0|^8.0|^9.0",
         "phpstan/phpstan": "^1.10",
         "friendsofphp/php-cs-fixer": "^3.52"
     },
@@ -45,9 +44,6 @@
         "sort-packages": true
     },
     "extra": {
-        "branch-alias": {
-            "dev-main": "1.x-dev"
-        },
         "laravel": {
             "providers": [
                 "Jetcod\\Laravel\\Translation\\Providers\\TranslationServiceProvider"
