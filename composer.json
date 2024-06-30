@@ -33,7 +33,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Jetcod\\Laravel\\Translation\\Test\\": "src/"
+            "Jetcod\\Laravel\\Translation\\Test\\": "tests/"
         }
     },
     "scripts": {
