@@ -8,7 +8,8 @@ class CreateTranslationsTable extends Migration
 {
     public function up()
     {
-        Schema::create(config('translations.database.table_name'), function (Blueprint $table) {
+        $tableName = sprintf("%s%s", config('translation.database.prefix', 'tbl_'), config('translation.database.table_name', 'translations'));
+        Schema::create($tableName, function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('translatable_id')->comment('
                     foreign key/id of record in another table (is not unique cause many instances can connect to this table)
@@ -26,6 +27,7 @@ class CreateTranslationsTable extends Migration
 
     public function down()
     {
-        Schema::dropIfExists(config('translations.database.table_name'));
+        $tableName = sprintf("%s%s", config('translation.database.prefix', 'tbl_'), config('translation.database.table_name', 'translations'));
+        Schema::dropIfExists($tableName);
     }
 }
