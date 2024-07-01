@@ -16,13 +16,13 @@ jobs:
         os: [ubuntu-latest]
         php: [8.0, 8.1, 8.2, 8.3]
         laravel:
-          - laravel: "8.*"
+          - version: "8.*"
             testbench: "^6.0"
-          - laravel: "9.*"
+          - version: "9.*"
             testbench: "^7.0"
-          - laravel: "10.*"
+          - version: "10.*"
             testbench: "^8.0"
-          - laravel: "11.*"
+          - version: "11.*"
             testbench: "^9.0"
           
 
