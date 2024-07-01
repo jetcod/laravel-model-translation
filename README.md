@@ -1,6 +1,6 @@
 # Laravel Translation
 
-[![Actions Status](https://github.com/jetcod/laravel-translation/actions/workflows/php.yml/badge.svg?style=for-the-badge&label=%3Cb%3EBuild%3C/b%3E)](https://github.com/jetcod/laravel-translation/actions)
+[![Actions Status](https://github.com/jetcod/laravel-translation/actions/workflows/tests.yml/badge.svg?style=for-the-badge&label=%3Cb%3EBuild%3C/b%3E)](https://github.com/jetcod/laravel-translation/actions)
 
 
 [![Latest Stable Version](http://poser.pugx.org/jetcod/laravel-translation/v?style=for-the-badge)](https://packagist.org/packages/jetcod/laravel-translation)
