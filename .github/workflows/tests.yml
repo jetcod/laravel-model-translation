@@ -14,19 +14,15 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest]
-        php: [7.4, 8.0, 8.1, 8.2, 8.3]
+        php: [8.0, 8.1, 8.2, 8.3]
         laravel:
-          - version: "6.*"
-            testbench: "^4.0"
-          - version: "7.*"
-            testbench: "^5.0"
-          - version: "8.*"
+          - laravel: "8.*"
             testbench: "^6.0"
-          - version: "9.*"
+          - laravel: "9.*"
             testbench: "^7.0"
-          - version: "10.*"
+          - laravel: "10.*"
             testbench: "^8.0"
-          - version: "11.*"
+          - laravel: "11.*"
             testbench: "^9.0"
           
 
