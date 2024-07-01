@@ -1,5 +1,11 @@
 # Laravel Translation
 
+[![Actions Status](https://github.com/jetcod/laravel-translation/actions/workflows/php.yml/badge.svg?style=for-the-badge&label=%3Cb%3EBuild%3C/b%3E)](https://github.com/jetcod/laravel-translation/actions)
+
+
+[![Latest Stable Version](http://poser.pugx.org/jetcod/laravel-translation/v?style=for-the-badge)](https://packagist.org/packages/jetcod/laravel-translation)
+[![License](http://poser.pugx.org/jetcod/laravel-translation/license?style=for-the-badge)](https://packagist.org/packages/jetcod/laravel-translation)
+
 Laravel Translation is a package that provides a simple and efficient way to manage translations in your Laravel applications. It allows you to store translations of all your models attributes in database, making it easy to manage and update translations without modifying language files.
 
 ## Installation
