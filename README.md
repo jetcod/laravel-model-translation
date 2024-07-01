@@ -68,6 +68,7 @@ class Post extends Model
 
 > **NOTE**: The `TRANSLATABLE_ATTRIBUTES` constant or the `getTranslatableAttributes` method return value can be either a string or an array of the model attribute names.
 
+**Defining translatable attributes is optional, but it is recommended to define them.**
 
 ### Create a translation
 Now, you can create translations for the model attributes through the defined relations:
