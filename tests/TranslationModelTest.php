@@ -79,6 +79,59 @@ class TranslationModelTest extends PHPUnitTestCase
         $this->assertEquals('original text goes here', $post->name);
     }
 
+    public function testItTranslatesOnlyTranslatableAttributes()
+    {
+        $post = new class() extends Post {
+            protected const TRANSLATABLE_ATTRIBUTES = 'name';
+        };
+        $post->id   = 1;
+        $post->name = 'original text goes here';
+        $post->body = 'some text goes here';
+
+        $post->translation()->saveMany([
+            new Translation([
+                'locale' => 'fr_FR',
+                'key'    => 'name',
+                'value'  => 'un texte va ici',
+            ]),
+        ]);
+
+        app()->setLocale('fr_FR');
+        $this->assertEquals('un texte va ici', $post->name);
+        $this->assertEquals('some text goes here', $post->body);
+    }
+
+    public function testItTranslatesAllAttributesIfNoTranslatableAttributesAreDefined()
+    {
+        $post = new class() extends Post {
+            protected function getTranslatableAttributes()
+            {
+                return null;
+            }
+        };
+        $post->id   = 1;
+        $post->name = 'some text goes here';
+        $post->body = 'another text goes here';
+
+        app()->setLocale('fr_FR');
+        $post->translation()->saveMany([
+            new Translation([
+                'locale' => 'fr_FR',
+                'key'    => 'name',
+                'value'  => 'un texte va ici',
+            ]),
+            new Translation([
+                'locale' => 'fr_FR',
+                'key'    => 'body',
+                'value'  => 'un autre texte va ici',
+            ]),
+        ]);
+
+        app()->setLocale('fr_FR');
+        $this->assertEquals('un texte va ici', $post->name);
+        $this->assertEquals('un autre texte va ici', $post->body);
+    }
+
     public function testItReturnsTranslationsCollection()
     {
         $post       = new Post();
