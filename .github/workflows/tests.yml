@@ -14,73 +14,20 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest]
-        include:
-          - php: 7.4
-            laravel: "6.*"
+        php: [7.4, 8.0, 8.1, 8.2, 8.3]
+        laravel:
+          - version: "6.*"
+            testbench: "^4.0"
+          - version: "7.*"
+            testbench: "^5.0"
+          - version: "8.*"
             testbench: "^6.0"
-          - php: 7.4
-            laravel: "7.*"
-            testbench: "^6.0"
-          - php: 7.4
-            laravel: "8.*"
-            testbench: "^6.0"
-          - php: 8.0
-            laravel: "6.*"
-            testbench: "^6.0"
-          - php: 8.0
-            laravel: "7.*"
-            testbench: "^6.0"
-          - php: 8.0
-            laravel: "8.*"
-            testbench: "^6.0"
-          - php: 8.0
-            laravel: "9.*"
-            testbench: "^6.0"
-          - php: 8.1
-            laravel: "6.*"
-            testbench: "^6.0"
-          - php: 8.1
-            laravel: "7.*"
-            testbench: "^6.0"
-          - php: 8.1
-            laravel: "8.*"
-            testbench: "^6.0"
-          - php: 8.1
-            laravel: "9.*"
-            testbench: "^6.0"
-          - php: 8.1
-            laravel: "10.*"
-            testbench: "^6.0"
-          - php: 8.2
-            laravel: "6.*"
-            testbench: "^6.0"
-          - php: 8.2
-            laravel: "7.*"
-            testbench: "^6.0"
-          - php: 8.2
-            laravel: "8.*"
-            testbench: "^6.0"
-          - php: 8.2
-            laravel: "9.*"
-            testbench: "^6.0"
-          - php: 8.2
-            laravel: "10.*"
-            testbench: "^6.0"
-          - php: 8.3
-            laravel: "6.*"
-            testbench: "^6.0"
-          - php: 8.3
-            laravel: "7.*"
-            testbench: "^6.0"
-          - php: 8.3
-            laravel: "8.*"
-            testbench: "^6.0"
-          - php: 8.3
-            laravel: "9.*"
-            testbench: "^6.0"
-          - php: 8.3
-            laravel: "10.*"
-            testbench: "^6.0"
+          - version: "9.*"
+            testbench: "^7.0"
+          - version: "10.*"
+            testbench: "^8.0"
+          - version: "11.*"
+            testbench: "^9.0"
           
 
     name: PHP ${{ matrix.php }} - Laravel ${{ matrix.laravel }} - ${{ matrix.dependency-version }}
