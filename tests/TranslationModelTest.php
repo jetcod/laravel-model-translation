@@ -101,6 +101,32 @@ class TranslationModelTest extends PHPUnitTestCase
         $this->assertEquals('some text goes here', $post->body);
     }
 
+    public function testItTranslatesAttributesImmediatelyAfterSwitchingLocale()
+    {
+        $post       = new Post();
+        $post->id   = 1;
+        $post->name = 'original text goes here';
+
+        $post->translation()->saveMany([
+            new Translation([
+                'locale' => 'fr_FR',
+                'key'    => 'name',
+                'value'  => 'un texte va ici',
+            ]),
+            new Translation([
+                'locale' => 'es_ES',
+                'key'    => 'name',
+                'value'  => 'aqui va un texto',
+            ]),
+        ]);
+
+        app()->setLocale('fr_FR');
+        $this->assertEquals('un texte va ici', $post->name);
+
+        app()->setLocale('es_ES');
+        $this->assertEquals('aqui va un texto', $post->name);
+    }
+
     public function testItTranslatesAllAttributesIfNoTranslatableAttributesAreDefined()
     {
         $post = new class() extends Post {

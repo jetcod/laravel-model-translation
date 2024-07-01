@@ -97,6 +97,36 @@ trait TranslatableTrait
      */
     private function getCachedTranslations(): Collection
     {
-        return $this->cachedTranslationModels = $this->cachedTranslationModels ?: $this->translation()->locale(app()->getLocale())->get();
+        // Check if translations are already cached for the current locale
+        if ($this->cachedTranslationModels instanceof Collection && $this->hasTranslationsForCurrentLocale()) {
+            return $this->cachedTranslationModels;
+        }
+
+        // If not cached or not found for current locale, fetch and cache translations
+        return $this->cachedTranslationModels = $this->fetchAndCacheTranslations(app()->getLocale());
+    }
+
+    /**
+     * Determines whether there are any translations cached for the current locale.
+     *
+     * @return bool `true` if there are cached translations for the current locale, `false` otherwise
+     */
+    private function hasTranslationsForCurrentLocale(): bool
+    {
+        $locale = app()->getLocale();
+
+        return null !== $this->cachedTranslationModels->firstWhere('locale', $locale);
+    }
+
+    /**
+     * Fetches and caches the translation models for the given locale.
+     *
+     * @param string $locale the locale to fetch translations for
+     *
+     * @return Collection the collection of translation models
+     */
+    private function fetchAndCacheTranslations(string $locale): Collection
+    {
+        return $this->translation()->locale($locale)->get();
     }
 }
