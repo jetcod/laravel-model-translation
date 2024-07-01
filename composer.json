@@ -1,6 +1,6 @@
 {
     "name": "jetcod/laravel-translation",
-    "description": "Translation Manager Package for Laravel",
+    "description": "Laravel Translation simplifies managing model attribute translations in your Laravel applications by storing them in the database.",
     "license": "MIT",
     "keywords": [
         "laravel",
