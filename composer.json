@@ -1,9 +1,11 @@
 {
-    "name": "jetcod/laravel-translation",
-    "description": "Laravel Translation simplifies managing model attribute translations in your Laravel applications by storing them in the database.",
+    "name": "jetcod/laravel-model-translation",
+    "description": "Laravel Model Translation simplifies managing model attribute translations in your Laravel applications.",
     "license": "MIT",
     "keywords": [
         "laravel",
+        "locale",
+        "language",
         "Translation",
         "localization"
     ],
