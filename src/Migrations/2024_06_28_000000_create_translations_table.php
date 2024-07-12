@@ -8,7 +8,7 @@ class CreateTranslationsTable extends Migration
 {
     public function up()
     {
-        $tableName = sprintf("%s%s", config('translation.database.prefix', 'tbl_'), config('translation.database.table_name', 'translations'));
+        $tableName = sprintf('%s%s', config('translation.database.prefix', 'tbl_'), config('translation.database.table_name', 'translations'));
         Schema::create($tableName, function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('translatable_id')->comment('
@@ -27,7 +27,7 @@ class CreateTranslationsTable extends Migration
 
     public function down()
     {
-        $tableName = sprintf("%s%s", config('translation.database.prefix', 'tbl_'), config('translation.database.table_name', 'translations'));
+        $tableName = sprintf('%s%s', config('translation.database.prefix', 'tbl_'), config('translation.database.table_name', 'translations'));
         Schema::dropIfExists($tableName);
     }
 }
