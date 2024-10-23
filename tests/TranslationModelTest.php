@@ -9,11 +9,6 @@ use Jetcod\Laravel\Translation\Providers\TranslationServiceProvider;
 use Jetcod\Laravel\Translation\Test\Stubs\Post;
 use Orchestra\Testbench\TestCase as PHPUnitTestCase;
 
-/**
- * @internal
- *
- * @coversNothing
- */
 class TranslationModelTest extends PHPUnitTestCase
 {
     use RefreshDatabase;
@@ -81,7 +76,7 @@ class TranslationModelTest extends PHPUnitTestCase
 
     public function testItTranslatesOnlyTranslatableAttributes()
     {
-        $post = new class() extends Post {
+        $post = new class extends Post {
             protected const TRANSLATABLE_ATTRIBUTES = 'name';
         };
         $post->id   = 1;
@@ -129,7 +124,7 @@ class TranslationModelTest extends PHPUnitTestCase
 
     public function testItTranslatesAllAttributesIfNoTranslatableAttributesAreDefined()
     {
-        $post = new class() extends Post {
+        $post = new class extends Post {
             protected function getTranslatableAttributes()
             {
                 return null;
@@ -188,6 +183,60 @@ class TranslationModelTest extends PHPUnitTestCase
             $this->assertArrayHasKey('key', $translation);
             $this->assertArrayHasKey('value', $translation);
         }
+    }
+
+    public function testItCanGetTranslationForDefinedLocale()
+    {
+        $post       = new Post();
+        $post->id   = 1;
+        $post->name = 'original text goes here';
+
+        $post->translation()->saveMany([
+            new Translation([
+                'locale' => 'fr_FR',
+                'key'    => 'name',
+                'value'  => 'un texte va ici',
+            ]),
+        ]);
+
+        $this->assertEquals('un texte va ici', $post->withLocale('fr_FR')->name);
+    }
+
+    public function testItResetsDefinedLocaleForEachRequest()
+    {
+        $post       = new Post();
+        $post->id   = 1;
+        $post->name = 'original text goes here';
+
+        $post->translation()->saveMany([
+            new Translation([
+                'locale' => 'fr_FR',
+                'key'    => 'name',
+                'value'  => 'un texte va ici',
+            ]),
+        ]);
+
+        $this->assertEquals('un texte va ici', $post->withLocale('fr_FR')->name);
+        $this->assertEquals('original text goes here', $post->name);
+    }
+
+    public function testChangingApplicationLocaleDoesNotAffectTranslationIfLocaleIsSet()
+    {
+        $post       = new Post();
+        $post->id   = 1;
+        $post->name = 'original text goes here';
+
+        $post->translation()->saveMany([
+            new Translation([
+                'locale' => 'fr_FR',
+                'key'    => 'name',
+                'value'  => 'un texte va ici',
+            ]),
+        ]);
+
+        app()->setLocale('ja_JP');
+        $this->assertEquals('un texte va ici', $post->withLocale('fr_FR')->name);
+        $this->assertEquals('ja_JP', app()->getLocale());
     }
 
     protected function getPackageProviders($app)

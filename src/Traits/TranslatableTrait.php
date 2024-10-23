@@ -11,6 +11,8 @@ trait TranslatableTrait
 {
     private $cachedTranslationModels;
 
+    private $locale;
+
     public function __get($key)
     {
         if ($this->isRelation($key)) {
@@ -38,6 +40,23 @@ trait TranslatableTrait
     }
 
     /**
+     * Sets the locale for the current model instance.
+     *
+     * This method allows you to specify a locale for the model, which will be used when retrieving
+     * translated attributes.
+     *
+     * @param string $locale the locale to set for the model
+     *
+     * @return $this the current model instance, for method chaining
+     */
+    public function withLocale(string $locale): self
+    {
+        $this->locale = $locale;
+
+        return $this;
+    }
+
+    /**
      * Retrieves the list of attributes that are translatable for the current model.
      *
      * If the `TRANSLATABLE_ATTRIBUTES` constant is defined on the model, it will be returned.
@@ -52,6 +71,15 @@ trait TranslatableTrait
         }
 
         return null;
+    }
+
+    private function popTranslationLocale(): string
+    {
+        $locale = $this->locale ?? app()->getLocale();
+
+        $this->locale = null;   // reset the current locale
+
+        return $locale;
     }
 
     /**
@@ -103,7 +131,7 @@ trait TranslatableTrait
         }
 
         // If not cached or not found for current locale, fetch and cache translations
-        return $this->cachedTranslationModels = $this->fetchAndCacheTranslations(app()->getLocale());
+        return $this->cachedTranslationModels = $this->fetchTranslations($this->popTranslationLocale());
     }
 
     /**
@@ -113,19 +141,19 @@ trait TranslatableTrait
      */
     private function hasTranslationsForCurrentLocale(): bool
     {
-        $locale = app()->getLocale();
+        $locale = $this->popTranslationLocale();
 
         return null !== $this->cachedTranslationModels->firstWhere('locale', $locale);
     }
 
     /**
-     * Fetches and caches the translation models for the given locale.
+     * Fetches the translation models for the given locale.
      *
      * @param string $locale the locale to fetch translations for
      *
      * @return Collection the collection of translation models
      */
-    private function fetchAndCacheTranslations(string $locale): Collection
+    private function fetchTranslations(string $locale): Collection
     {
         return $this->translation()->locale($locale)->get();
     }
