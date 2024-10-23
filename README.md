@@ -113,6 +113,15 @@ app()->setLocale('fr_FR');
 var_dump($post->title);     // "Bonjour le monde"
 ```
 
+Alternatively, you can use the `withLocale` method to retrieve the translated model for  a specific locale:
+
+```php
+var_dump($post->withLocale('fr_FR')->title); // "Bonjour le monde"
+
+// Current locale is reset to default afterwards
+var_dump($post->title); // "Hello World"
+```
+
 ## Testing
 The package includes tests that you can run using `PHPUnit`:
 
